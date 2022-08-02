@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+  {{Title}}
+{% endblock title %}
+
+{% block container %}
+  <!-- banner -->
+
+  <!-- main body -->
+    <section id="overview-main" class="my-5 py-5">
+        <div class="container">
+            <div class="h2 my-3 text-center mb-2">Search Result</div>
+            <div class="row my-2">
+                {% if result %}
+                {% for item in result %}
+                    <div class="col-md-4">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{item.main_photo.url}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title">{{item.name}}</h5>
+                            <div class="bg-black text-white p-1 rounded" id="int">
+                                <span class=""><i class="bi bi-clock"></i>{{item.get_day}} Days</span>
+                                <span class=""><i class="bi bi-person"></i>Age {{item.age_range}}+</span>
+                                <span class=""><i class="bi bi-map"></i>{{item.destination}}</span>
+                            </div>
+                            <p class="card-text">{{item.description | truncatewords:15}}</p>
+                            <a href="{% url 'addtocart' item.id %}" class="btn btn-outline-dark p-3">Add To Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% else %}
+                <p class="bg-danger p-5">No content here</p>
+                {% endif %}
+                
+            </div>
+        </div>
+    </section>
+{% endblock container %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+  {{Title}}
+{% endblock title %}
+
+{% block container %}
+  <section id="checkout">
+    <div class="container">
+        <div class="row my-4">
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <h4 class="text-center">Items in Cart</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>Name</th>
+                                <th>No of Persons</th>
+                                <th>Rate</th>
+                                <th>SubTotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if cart %}
+                              {% for item in cart.cartproduct_set.all %}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{item.place.name}}</td>
+                                    <td>{{item.per_person}}</td>
+                                    <td>&#8358; {{item.rate | intcomma}}</td>
+                                    <td>&#8358; {{item.subtotal | intcomma}}</td>
+                                </tr>
+                              {% endfor %}
+                              <tr>
+                                <td colspan="4"><h4>Total: &#8358 {{cart.total | intcomma}}</h4></td>
+                              </tr>
+                            {% else %}
+                              <p class="bg-dark text-white p-2">No Item to Review</p>
+                            {% endif %}                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- checkout form -->
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <h4 class="text-center">Checkout Form</h4>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-outline-dark">Checkout</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+{% endblock container %}
+

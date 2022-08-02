@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,800;1,200&display=swap');
+@import 'https://fonts.googleapis.com/css?family=Lily+Script+One';
+
+*{
+    font-family: Poppins, Lily;
+}
+
+body{
+    margin: 0;
+}
+
+:root{
+    --main-color: #900707 !important;
+    --second-color: #ffffab !important;
+    --white: #fff !important;
+    --black: #000 !important;
+    --light-black: #3333 !important;
+    
+}
+
+.navbar{
+    background: var(--black);
+}
+
+.navbar .navbar-brand{
+    font-size: 2.5rem;
+    color: var(--white);
+    font-weight: 800;
+}
+
+.navbar .navbar-brand>span{
+    font-size: 2.5rem;
+    color: var(--main-color);
+}
+
+.navbar .navbar-nav .nav-link{
+    color: var(--white);
+    font-size: 1.2rem;
+    padding: 2.6 0.8rem;
+}
+
+.navbar .navbar-nav .nav-link:hover{
+    color: var(--white);
+    background: var(--main-color);
+    border-radius: .3rem;
+}
+
+#active{
+    color: var(--main-color);
+}
+
+#active:hover{
+    color: var(--white);
+    background: var(--main-color);
+    
+}
+
+.btn-outline-success{
+    outline: var(--main-color);
+    border: 1px solid var(--main-color);
+    color: var(--white);
+}
+
+.btn-outline-success:hover{
+    outline: var(--main-color);
+    color: var(--white);
+    background: var(--main-color);
+    border: 1px solid var(--main-color);
+    
+}
+
+
+/* #banner #ban-dark{
+    background: rgba(0, 0, 0, 0.473);
+    height: 100%;
+    border: 3px solid green;
+    position: relative;
+} */
+
+#banner img{
+    width: 100%;
+    background-size: cover;
+    height: 91vh;
+    position: relative;
+}
+
+#banner .content{
+    position: absolute;
+    top: 300px;
+    margin: 7.4rem;
+    color: white;
+}
+
+#banner .content h2{
+    font-weight: 800;
+}
+
+#banner .content p{
+    width: 70%;
+    margin: 0 0 auto;
+}
+
+h3{
+    font-family: Lily;
+}
+
+#special .card:hover{
+    background-color: var(--main-color);
+    color: var(--white);
+}
+
+#special .card{
+    color: var(--black);
+    border: 2px solid var(--main-color);
+    background-image: -webkit-linear-gradient(30deg, var(--main-color) 50%, transparent 50%);
+    background-image: linear-gradient(30deg, var(--main-color) 50%, transparent 50%);
+    background-size: 500px;
+    background-repeat: no-repeat;
+    background-position: 0%;
+    -webkit-transition: background 300ms ease-in-out;
+    transition: background 300ms ease-in-out;
+}
+
+#special .card:hover{
+    background-position: 100%;
+    color: var(--white);
+}
+
+#main .card{
+    position: relative;
+    height: 85vh;
+}
+
+#main .card:hover .trans{
+    background: var(--main-color);
+    opacity: .5;
+    height: 100%;
+    position: relative;
+    transition: all .5s ease;
+    z-index: 1;
+}
+
+#main .card:hover img{
+    position: absolute;
+    height: 100%;
+    transform: translateY(-50% -50%);
+    transition: all .5s ease;
+}
+
+#main .card:hover .card-body{
+    position: absolute;
+    top: 20%;
+    transform: translateY(-5%);
+    transition: all .5s ease;
+    z-index: 2;
+    color: var(--white);
+}
+
+
+#main .card:hover .text-muted{
+    color: var(--white) !important;
+}
+
+#overview img{
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    position: relative;
+}
+
+#overview .content{
+    background-color: var(--black);
+    opacity: .8;
+    position: absolute;
+    top: 500px;
+    left: 3.8rem;
+    color: var(--white);
+}
+
+#overview .content h2{
+    font-weight: 800;
+}
+
+#overview .content p{
+    width: 70%;
+    margin: 0 0 auto;
+}
+
+/* media query */
+@media screen and (max-width: 520px){
+    #banner img{
+        height: 50vh;
+    }
+
+    #banner .content{
+        position: absolute;
+        top: 100px;
+        left: 3.8rem;
+        color: var(--white);
+    }
+
+    #banner .content h2{
+        font-weight: 200;
+        font-size: 3rem;
+    }
+
+    #banner .content p{
+        width: 100%;
+        margin: 0 0 auto;
+    }
+
+    #main .card:hover .card-body{
+        position: absolute;
+        transform: all .5s ease;
+        transform: translateY(-5%);
+        top: 10%;
+        z-index: 2;
+        color: var(--main-color);
+    }
+
+    #overview .content{
+        background-color: var(--main-color);
+        opacity: .8;
+        position: absolute;
+        top: 450px;
+        left: 0rem;
+        color: var(--main-color);
+    }
+}

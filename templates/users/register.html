@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}
+    {{Title}}
+{% endblock title %}
+
+{% block container %}
+      <div class="container my-5">
+        <div class="row">
+          <div class="col-md-5 mx-auto">
+            <div class="card p-4 my-1">
+              <h3 class="text-center">Welcome</h3>
+              <p class="text-center">Register</p>
+              <form action="" enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success">Register</button>
+                    <a href="{% url 'loginuser' %}?next=/checkout/" class="text-decoration-none">Already a User? Login</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock container %}

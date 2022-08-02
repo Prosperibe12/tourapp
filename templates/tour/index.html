@@ -1,0 +1,120 @@
+  {% extends "base.html" %}
+  {% load static %}
+  {% load humanize %}
+  {% block title %}
+    {{Title}}
+  {% endblock title %}
+
+  {% block container %}
+    <!-- section 1 -->
+        <div class="container-fluid p-0" id="banner">
+          <div id="ban-dark"></div>
+          {% if banner %}
+              {% for item in banner %}
+                  <img src="{{item.image.url}}" alt="futtour">
+              {% endfor %}
+          {% endif %}
+          <div class="content">
+            <h2 class="display-3">Explore <br> Your Travel</h2>
+            <p class="lead">Discover your next adventure, become an explorer to get started</p>
+          </div>
+        </div>
+        <!-- section 2 -->
+        <section id="special" class="my-5">
+          <div class="container">
+            <div class="intro text-center my-4">
+              <p>TRAVIO SPECIALS</p>
+              <h2>Why Travel with Tutive?</h2>
+            </div>
+            <div class="row my-4 g-4">
+              <div class="col-md-4">
+                <div class="card p-3 text-center">
+                  <h3>2000+ Our Worldwide Guide</h3>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card p-3 text-center">
+                  <h3>100% Trusted Tour Agency</h3>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card p-3 text-center">
+                  <h3>12+ Years of Travel Experience</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- section 3 -->
+        <section id="main">
+
+          <div class="intro text-center my-4">
+            <p class="fw-bold">MODERN & BEAUTIFUL</p>
+            <h1>Our Most Popular Adventures</h1>
+          </div>
+
+          <div class="container my-3">
+            <div class="row g-3">
+              {% if paginator %}
+                {% for show in paginator %}
+                  <div class="col-md-4">
+                    <div class="card">
+                      <div class="trans"></div>
+                      <img src="{{show.main_photo.url}}" alt="{{show.name}}" class="card-img img-fluid" height="250">
+                      <div class="card-body p-4">
+                        <h3 class="card-title">{{show.name}}</h3>
+                        <p class="lead text-muted">&#8358; {{show.price | intcomma}}/ Per Person</p>
+                        <div class="bg-info rounded px-2 py-3 my-2">
+                          <i class="bi bi-clock mx-2"></i> {{show.get_day}} Days<i class="bi bi-map mx-2"></i>{{show.destination}}
+                        </div>
+                        <p class="lead">{{show.description|truncatewords:20}}</p>
+                        <a href="{% url 'overview' show.id %}" class="btn btn-outline-info text-decoration-none">Show Details</a>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+                <!-- paginator --> 
+                <!-- end of paginator -->
+              {% else %}
+                <p class="bg-danger p-4">No Tour Places Yet</p>
+              {% endif %}
+              
+            </div>
+            <!-- page -->
+                <div class="col-md-5 mx-auto my-2">
+                  <nav>
+                    <ul class="pagination">
+                      {% if paginator.has_previous %}
+                        <li class="page-item">
+                          <a class="page-link"  href="?page={{ paginator.previous_page_number }}">Previous</a>
+                        </li>
+                      {% else %}
+                        <li class="page-item disabled">
+                          <a href="#" class="page-link">Previous</a>
+                        </li>
+                      {% endif %}
+                      
+                      {% for i in paginator.paginator.page_range %}
+                        {% if i == paginator.number %}
+                          <li class="page-item active"><a class="page-link">{{i}}</a></li>
+                        {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                        {% endif %}
+                      {% endfor %}
+
+                      {% if paginator.has_next %}
+                      <li class="page-item">
+                        <a class="page-link"  href="?page={{ paginator.next_page_number }}">Next</a>
+                      </li>
+                      {% else %}
+                      <li class="page-item disabled">
+                        <a href="#" class="page-link">Next</a>
+                      </li>
+                      {% endif %}                     
+                    </ul>
+                  </nav>
+                </div>
+                <!-- page -->
+          </div>
+        </section>
+  {% endblock container %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+  {{Title}}
+{% endblock title %}
+
+{% block container %}
+  <!-- banner -->
+  <div class="container-fluid p-0" id="overview">
+    {% if main %}
+      <img src="{{main.main_photo.url}}" alt="" class="img-fluid">
+    {% else %}
+      <h1 class="display-2">Welcome to FutTour</h1>
+    {% endif %}
+    <div class="content">
+        <h2 class="display-3">{{main.name}}</h2>
+        <p class="lead">&#8358; {{main.price | intcomma}} / Per Person</p>
+    </div>
+  </div>
+
+  <!-- main body -->
+  <section id="overview-main" class="my-5 py-5">
+    <div class="container">
+        <div class="h2 my-3">Overview</div>
+            {% if main %}
+              <p class="lead my-3">{{main.description}}</p>
+              <div class="bg-black text-white w-50 p-3" id="int">
+                <span class="mx-2"><i class="bi bi-clock"></i>{{day}} Days</span>
+                <span class="mx-2"><i class="bi bi-person"></i>Age {{main.age_range}}+</span>
+                <span class="mx-2"><i class="bi bi-map"></i>{{main.destination}}</span>
+              </div>
+              <div class="table-body my-4">
+                <table class="table table-bordered" width="200" height="300">
+                      <div class="tbody p-2 text-center">
+                        <tr>
+                            <td><strong>Destination:</strong></td>
+                            <td>{{main.destination}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Departure Time:</strong></td>
+                            <td>{{main.departure}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Return Time:</strong></td>
+                            <td>{{main.arrival}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Included:</strong></td>
+                            <td>{{main.package}}</td>
+                        </tr>
+                      </div>
+                </table>
+                <div class="display-5 my-3 py-2 text-center">Photos</div>
+                <div class="row g-0">
+                  <div class="col-md-3 mx-1">
+                    <img src="{{main.photo1.url}}" alt="{{main.destination}}" class="img-fluid w-100">
+                  </div>
+                  <div class="col-md-3 mx-1">
+                    <img src="{{main.photo2.url}}" alt="{{main.destination}}" class="img-fluid w-100">
+                  </div>
+                  <div class="col-md-3 mx-1">
+                    <img src="{{main.photo3.url}}" alt="{{main.destination}}" class="img-fluid w-100">
+                  </div>
+                </div>
+                <div class="d-grid my-3">
+                    <a href="{% url 'addtocart' main.id %}" class="btn btn-outline-dark p-3">Add To Cart</a>
+                </div>
+              </div>
+            {% else %}
+                <p class="bg-danger p-5">No content here</p>
+            {% endif %}
+    </div>
+  </section>
+{% endblock container %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{Title}}
+{% endblock title %}
+
+{% block container %}
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card p-5 my-3">
+                    <h3 class="text-center">Login</h3>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="input-group my-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="bi bi-person"></i></div>
+                            </div>
+                            <input type="text" class="form-control" name="uname" placeholder="username">
+                        </div>
+                        <div class="input-group my-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="bi bi-lock"></i></div>
+                            </div>
+                            <input type="password" class="form-control" name="pwd" placeholder="password">
+                        </div>
+                        <div class="d-grid mb-3">
+                            <button class="btn btn-success" type="submit">Login</button>
+                        </div>
+                        <a href="{% url 'register' %}?next=/checkout/" class="text-decoration-none">Dont have an account? Register</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock container %}
