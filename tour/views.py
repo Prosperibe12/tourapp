@@ -69,7 +69,7 @@ def addtocart(request, id):
     # get Tour place by id
     cart_product = Tour.objects.get(id=id)
     print(cart_product)
-    # check if cart exist
+    # check if cart exist in session
     cart_id = request.session.get('cart_id', None)
     if cart_id:
         cart_item = Cart.objects.get(id=cart_id)
@@ -88,15 +88,13 @@ def addtocart(request, id):
             cart_product.save()
             cart_item.total = cart_product.price 
             cart_item.save()
-            messages.success(request, 'Item has been Increased.')
-            
+            messages.success(request, 'Item has been Increased.')           
         # add item in cart
         else:
             cartproduct = CartProduct.objects.create(cart=cart_item, place=cart_product, rate=cart_product.price, per_person=1, subtotal=cart_product.price)
             cart_item.total += cart_product.price 
             cart_item.save()
-            messages.success(request, 'New Item Added in Cart')
-            
+            messages.success(request, 'New Item Added in Cart')         
     else:
         cart_item = Cart.objects.create(total=0)
         print(f'Hello:::{cart_item.id}')  
@@ -114,7 +112,7 @@ def addtocart(request, id):
 # users cart
 def myCart(request):
     
-    # create session
+    # get session cart
     cart_id = request.session.get('cart_id', None)
     # if cart_id exist
     if cart_id:

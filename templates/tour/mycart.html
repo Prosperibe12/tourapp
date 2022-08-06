@@ -7,13 +7,14 @@
 
 {% block container %}
       <!-- section 3 -->
-    <section id="main">
-        <div class="intro text-center my-4">
+    <section id="overview-main" class="my-5 py-5">
+        <div class="intro text-center my-2">
           <h1>My Cart</h1>
         </div>
 
         <div class="container my-3">
-            <div class="row g-3">
+            <div class="row g-3 my-2">
+            {% if cart %}
                 <table class="table table-hover table-dark text-white">
                     <thead>
                         <tr>
@@ -28,8 +29,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% if cart %}
-                            {% for item in cart.cartproduct_set.all %}
+                        {% for item in cart.cartproduct_set.all %}
                             <tr>
                                 <td>{{forloop.counter}}</td>
                                 <td><h5>{{item.place.name}}</h5></td>
@@ -43,28 +43,28 @@
                                 <td><h5>{{item.subtotal | intcomma}}</h5></td>
                                 <td><a href="{% url 'manageCart' item.id %}?action=remove"><i class="bi bi-trash text-white"></i></a></td>
                             </tr>
-                            {% endfor %}
-                                <tr class="align-left">
-                                    <td class="display-6">Total: {{cart.total | intcomma}}</td>
-                                </tr>
-                                <tr>
-                                    {% if cart.cartproduct_set.all %}
-                                      <td colspan="3"><a href="{% url 'clearCart' %}" class="btn btn-info">Clear Cart</a></td>
-                                    {% else %}
-                                      <td><button class="btn btn-info" type="submit" disabled>Clear Cart</button></td>
-                                    {% endif %}
-                                       <td><a href="{% url 'index' %}" class="btn btn-info">Continue Shopping</a></td>
-                                    {% if cart.cartproduct_set.all %}
-                                       <td colspan="3" class="text-end"><a href="{% url 'checkout' %}" class="btn btn-info">Proceed to Checkout</a></td>
-                                    {% else %}
-                                       <td colspan="3"><button type="submit" class="btn btn-info" disabled>Proceed to Checkout</button></td>
-                                    {% endif %}                      
-                                </tr>
-                        {% else %}
-                        <p class="bg-danger p-4">No Item Present in Cart</p>
-                        {% endif %}
+                        {% endfor %}
+                            <tr class="align-left">
+                                <td class="display-6">Total: {{cart.total | intcomma}}</td>
+                            </tr>
+                            <tr>
+                                {% if cart.cartproduct_set.all %}
+                                    <td colspan="3"><a href="{% url 'clearCart' %}" class="btn btn-info">Clear Cart</a></td>
+                                {% else %}
+                                    <td><button class="btn btn-info" type="submit" disabled>Clear Cart</button></td>
+                                {% endif %}
+                                    <td><a href="{% url 'index' %}" class="btn btn-info">Continue Shopping</a></td>
+                                {% if cart.cartproduct_set.all %}
+                                    <td colspan="3" class="text-end"><a href="{% url 'checkout' %}" class="btn btn-info">Proceed to Checkout</a></td>
+                                {% else %}
+                                    <td colspan="3"><button type="submit" class="btn btn-info" disabled>Proceed to Checkout</button></td>
+                                {% endif %}                      
+                            </tr>
                     </tbody>
                 </table>
+                {% else %}
+                    <p class="bg-danger p-4 text-center">No Item Present in Cart</p>
+                {% endif %}
             </div>
         </div>
     </section>

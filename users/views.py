@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 # function for register
 def register(request):
     
+    # prevent authenicated users from going to dashboard
     if request.user.is_authenticated:
         messages.warning(request, 'Already Logged In')
         redirect('dashboard')

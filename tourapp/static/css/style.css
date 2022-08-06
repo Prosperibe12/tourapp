@@ -5,8 +5,15 @@
     font-family: Poppins, Lily;
 }
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body{
     margin: 0;
+    position: relative;
+    min-height: 100%;
 }
 
 :root{
@@ -185,6 +192,14 @@ h3{
     width: 70%;
     margin: 0 0 auto;
 }
+
+/* footer {
+    position:absolute;
+    left:0px;
+    bottom:18px;
+    height:30px;
+    width:100%;
+} */
 
 /* media query */
 @media screen and (max-width: 520px){
