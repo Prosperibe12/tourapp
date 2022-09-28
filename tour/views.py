@@ -1,11 +1,11 @@
 from django.conf import settings
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from . models import *
 from django.contrib import messages
 from django.db.models import Q
 from django.core.paginator import Paginator
 from . forms import CheckoutForm
+from .models import Tour, Cart, CartProduct, Banner, Order
 
 # Create your views here.
 def  index(request):
@@ -52,7 +52,7 @@ def overview(request, id):
 
 # search function
 def search(request):
-    
+  
     if request.method == 'GET':
         kword = request.GET.get('q')
         main = Tour.objects.filter(Q(name__icontains = kword) | Q(destination__icontains = kword))
